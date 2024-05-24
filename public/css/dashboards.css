@@ -44,7 +44,7 @@ body {
 
 .dash-right .avisos .div-form textarea {
   width: 95%;
-  border: 3px solid #e6005a;
+  border: 3px solid red;
   background-color: white;
   border-radius: 5px;
 }
@@ -286,7 +286,7 @@ body {
   font-weight: 600;
   font-size: 18px;
   padding: 10px 15px;
-  color: #e6005a;
+  color: #ff0000;
   background-color: white;
   margin: 5px;
   border-radius: 3px;

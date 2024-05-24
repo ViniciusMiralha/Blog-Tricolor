@@ -47,7 +47,7 @@
     </div>
     <div class="container">
       <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
+        <h2>Cadastre-se Tricolor!</h2>
         <div class="formulario">
           <!--
                          Para inserir mais um campo, copie uma das inputs abaixo.
@@ -115,12 +115,12 @@
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        "Complete todos os campos";
 
       finalizarAguardar();
       return false;
       
-     } else if (nomeVar.lenght < 1) {
+     } else if (nomeVar.lenght < 2) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(Nome deve conter pelo menos 2 caracteres)";
@@ -132,7 +132,7 @@
     else if (arroba < 0) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(email deve conter @)";
+        "(Email deve conter @)";
         
       finalizarAguardar();
       return false;

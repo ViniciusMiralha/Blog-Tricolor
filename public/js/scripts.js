@@ -38,6 +38,69 @@ document.addEventListener('DOMContentLoaded', () => {
               { answer: '4', correct: false },
           ],
       },
+      {
+        question: 'Qual é o estádio oficial do São Paulo FC?',
+        answers: [
+            { answer: 'Maracanã', correct: false },
+            { answer: 'Morumbi', correct: true },
+            { answer: 'Pacaembu', correct: false },
+            { answer: 'Allianz Parque', correct: false },
+        ],
+    },
+    {
+        question: 'Quem é o maior artilheiro da história do São Paulo FC?',
+        answers: [
+            { answer: 'Careca', correct: false },
+            { answer: 'Serginho Chulapa', correct: true },
+            { answer: 'Luís Fabiano', correct: false },
+            { answer: 'Raí', correct: false },
+        ],
+    },
+    {
+        question: 'Em que ano o São Paulo FC venceu seu primeiro Campeonato Brasileiro?',
+        answers: [
+            { answer: '1977', correct: false },
+            { answer: '1986', correct: true },
+            { answer: '1991', correct: false },
+            { answer: '2005', correct: false },
+        ],
+    },
+    {
+        question: 'Qual é o estádio oficial do São Paulo FC?',
+        answers: [
+            { answer: 'Maracanã', correct: false },
+            { answer: 'Morumbi', correct: true },
+            { answer: 'Pacaembu', correct: false },
+            { answer: 'Allianz Parque', correct: false },
+        ],
+    },
+    {
+        question: 'Qual é o estádio oficial do São Paulo FC?',
+        answers: [
+            { answer: 'Maracanã', correct: false },
+            { answer: 'Morumbi', correct: true },
+            { answer: 'Pacaembu', correct: false },
+            { answer: 'Allianz Parque', correct: false },
+        ],
+    },
+    {
+        question: 'Qual é o estádio oficial do São Paulo FC?',
+        answers: [
+            { answer: 'Maracanã', correct: false },
+            { answer: 'Morumbi', correct: true },
+            { answer: 'Pacaembu', correct: false },
+            { answer: 'Allianz Parque', correct: false },
+        ],
+    },
+    {
+        question: 'Qual é o estádio oficial do São Paulo FC?',
+        answers: [
+            { answer: 'Maracanã', correct: false },
+            { answer: 'Morumbi', correct: true },
+            { answer: 'Pacaembu', correct: false },
+            { answer: 'Allianz Parque', correct: false },
+        ],
+    },
   ];
 
   // substituição do quizz para a primeira pergunta

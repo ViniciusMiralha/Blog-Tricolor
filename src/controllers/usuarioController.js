@@ -89,27 +89,79 @@ function bancar(req, res) {
     var alternativasErradas = req.body.alternativasErradasServer;
     var idUsuario = req.body.idUsuarioServer;
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.bancar(alternativasCertas, alternativasErradas, idUsuario)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.bancar(alternativasCertas, alternativasErradas, idUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
 }
+
+
+function mostrarQuiz(req, res) {
+    var idUsuario = req.body.idUsuarioServer
+
+    usuarioModel.mostrarQuiz(idUsuario)
+        .then(
+            function (chamandoQuiz) {
+
+                res.json({
+                    chamandoQuiz
+                });
+            }
+        )
+}
+
+function procurarQuiz(req, res) {
+    const limitedelinhas = 1;
+
+    usuarioModel.procurarQuiz(limitedelinhas)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function quizatual(req, res) {
+
+    usuarioModel.quizatual()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 
 module.exports = {
     autenticar,
     cadastrar,
-    bancar
+    bancar,
+    mostrarQuiz,
+    procurarQuiz,
+    quizatual
 }

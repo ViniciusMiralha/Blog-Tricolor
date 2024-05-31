@@ -144,6 +144,9 @@
 <div id="ir_para_bd"></div>
 </body>
 <script>
+    var corretasDashboard = 0;
+    var erradasDashboard = 0;
+
     
   // Define o nome do usuário a partir da sessão
   const b_usuario = document.getElementById('b_usuario');
@@ -176,7 +179,7 @@
           perguntaAtual++;
           document.getElementById("pergunta" + perguntaAtual).style.display = "block";
       } else {
-          ir_para_bd.innerHTML = `<button onclick="bancar(), time">Finalizar</button>` //exibirResultados();
+          ir_para_bd.innerHTML = `<button onclick="bancar(), timeout">Finalizar</button>` //exibirResultados();
       }
   }
 
@@ -290,6 +293,38 @@
           }),
       })
   }
+
+  var timeout = setTimeout(function mostrarQuiz() {
+        fetch("/usuarios/mostrarQuiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuarioServer: sessionStorage.ID_USUARIO
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    console.log(json.chamandoQuiz[0])
+
+                    var resultado = json.chamandoQuiz[0];
+
+                    var erradasMetrica = resultado.respostaserradas;
+                    var corretasMetrica = resultado.respostascertas;
+                    
+
+                    corretasDashboard = corretasMetrica;
+                    erradasDashboard = erradasMetrica;
+                })
+            }
+        })
+    }, 200)
 </script>
 
 </html>

@@ -16,4 +16,17 @@ router.post("/bancar", function (req, res) {
     usuarioController.bancar(req, res);
 });
 
+router.post("/mostrarQuiz", function (req, res) {
+    usuarioController.mostrarQuiz(req, res);
+});
+
+router.get("/procurarQuiz", function (req, res) {
+    usuarioController.procurarQuiz(req, res);
+});
+
+router.get("/quizatual", function (req, res) {
+    usuarioController.quizatual(req, res);
+});
+
+
 module.exports = router;

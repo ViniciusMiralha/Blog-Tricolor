@@ -120,7 +120,7 @@ body {
 .social {
   background-color: #ff00003e;
   display: flex;
-  height: 500px;
+  height: 600px;
 }
 
 .social .container {
@@ -426,3 +426,42 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;       /* roundness of the scroll thumb */
   border: 3px solid black;  /* creates padding around scroll thumb */
 }
+
+.corpo3 {
+  background-color: #ffffff3e;
+  display: flex;
+  height: 500px;
+  align-items: center;
+}
+
+
+.corpo3 img {
+  width: 450px;
+  height: 330px;
+  border-color: #ff0000;
+  color: #ffffff;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 170px;
+  
+}
+
+.corpo3 h1 {
+margin-bottom: auto;
+margin-top: 6%;
+margin-left: 1%;
+font-family: Georgia, 'Times New Roman', Times, serif;
+color: #ffffff;
+}
+
+.corpo3 p {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #ffffff;
+  }
+  .corpo4 {
+    background-color: white;
+    display: flex;
+    height: 500px;
+    align-items: center;
+  }

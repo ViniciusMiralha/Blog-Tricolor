@@ -1,5 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
+
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -22,7 +22,7 @@ function autenticar(req, res) {
 
                         if (resultadoAutenticar.length > 0) {
                             res.json({
-                                id: resultadoAutenticar[0].id,
+                                idUsuario: resultadoAutenticar[0].idUsuario,
                                 email: resultadoAutenticar[0].email,
                                 nome: resultadoAutenticar[0].nome,
                                 /*cpf: resultadoAutenticar[0].cpf,*/
@@ -83,7 +83,33 @@ function cadastrar(req, res) {
     }
 }
 
+function bancar(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var alternativasCertas = req.body.alternativasCertasServer;
+    var alternativasErradas = req.body.alternativasErradasServer;
+    var idUsuario = req.body.idUsuarioServer;
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.bancar(alternativasCertas, alternativasErradas, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    bancar
 }

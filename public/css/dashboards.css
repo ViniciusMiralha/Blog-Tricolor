@@ -495,7 +495,7 @@ main {
   display: none !important;
 }
 
-/* SCORE CONTAINER */
+
 #quizz-container,
 #score-container {
   color: #222222;
@@ -551,7 +551,7 @@ main {
   color: #ffffff;
 }
 
-/* Quizz container */
+
 #question {
   text-align: center;
   margin-bottom: 25px;
@@ -617,7 +617,7 @@ main {
   border: none;
 }
 
-/* RESPONSIVO */
+
 @media (max-width: 450px) {
   #quizz-container,
   #score-container {
@@ -626,3 +626,4 @@ main {
     box-shadow: none;
   }
 }
+

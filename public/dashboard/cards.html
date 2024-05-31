@@ -2,106 +2,294 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+  <link rel="icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dasboard Tricolor</title>
 
+  <link rel="stylesheet" href="./../css/dashboards.css">
+  <link rel="stylesheet" href="./../css/estilo.css" />
 
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
-
-    <script src="../js/sessao.js"></script>
-    <script src="../js/alerta.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-        <script src="../js/scripts.js"></script>
+  <script src="../js/sessao.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+ 
 </head>
 
-<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+<body>
 
-    <div class="janela">
+  <div class="janela">
 
-        <div class="header-left dash-header">
+    <div class="header-left dash-header">
 
-            <h1>São Paulo F.C.</h1>
+      <h1>São Paulo F.C.</h1>
 
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
+      <div class="hello">
+        <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+      </div>
 
-            <div class="btn-nav">
-                <h3>Quizz</h3>
-            </div>
+      <div class="btn-nav">
+        <h3>Quizz</h3>
+      </div>
 
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
+      <div class="btn-nav-white">
+        <a href="./dashboard.html">
+          <h3>Gráficos</h3>
+        </a>
+      </div>
 
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Conversas</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-        </div>
-
-        <div class="dash">
-            <div class="containerquizz">
-     
-                <main>
-                  <!-- QUIZZ CONTAINER -->
-                  <div id="quizz-container">
-                    <p id="question">
-                      <span id="question-number">1</span> &#8212;
-                      <span id="question-text">Qual é a unidade de medida para metros?</span>
-                    </p>
-                    <div id="answers-box">
-                      <button><span class="btn-letter"></span> <span class="question-answer"></span></button>
-                      <button><span class="btn-letter"></span> <span class="question-answer"></span></button>
-                      <button><span class="btn-letter"></span> <span class="question-answer"></span></button>
-                      <button><span class="btn-letter"></span> <span class="question-answer"></span></button>
-                    </div>
-                  </div>
-          
-                  <!-- SCORE BOARD -->
-                  <div id="score-container" class="hide">
-                    <h2>Parabéns sua performance foi de:</h2>
-                    <p id="display-score"><span>90</span>%</p>
-                    <p>
-                      Você acertou <span id="correct-answers">0</span> de
-                      <span id="questions-qty">10</span> perguntas
-                    </p>
-                    <button id="restart">Refazer quizz!</button>
-                  </div>
-          
-                  <!-- TEMPLATE RESPOSTA -->
-                  <button class="answer-template hide">
-                    <span class="btn-letter"></span> <span class="question-answer"></span>
-                  </button>
-                </main>
-              
-              </div>
-            </div>
-          </body>
-        </html>
-        
-            </div>
-
-
-        </div>
+      <div class="btn-logout" onclick="limparSessao()">
+        <h3>Sair</h3>
+      </div>
 
     </div>
 
+    <div class="dash">
+
+      <div class="containerquizz">
+        <div id="quizContainer">
+          <div id="inicarQuiz">
+              <h1>Quiz São Paulo</h1>
+              <p>Bora testar seus conhecimentos?</p>
+              <button onclick="iniciar()">Jogar</button>
+          </div>
+          <div id="quiz" style="display: none;">
+              <div id="pergunta1" class="pergunta">
+                  <h2>Em que ano o São Paulo FC foi fundado?</h2>
+                  <button onclick="responder(this, '1930')">1900</button>
+                  <button onclick="responder(this, '1930')">1925</button>
+                  <button onclick="responder(this, '1930')">1930</button>
+                  <button onclick="responder(this, '1930')">1935</button>
+              </div>
+              <div id="pergunta2" class="pergunta" style="display: none;">
+                  <h2>Qual é o estádio oficial do São Paulo FC?</h2>
+                  <button onclick="responder(this, 'Morumbi')">Morumbi</button>
+                  <button onclick="responder(this, 'Morumbi')">Maracanã</button>
+                  <button onclick="responder(this, 'Morumbi')">Pacaemmbu</button>
+                  <button onclick="responder(this, 'Morumbi')">Allianz Parque</button>
+              </div>
+              <div id="pergunta3" class="pergunta" style="display: none;">
+                  <h2>Quantos títulos da Copa Libertadores o São Paulo FC possui?</h2>
+                  <button onclick="responder(this, '3')">1</button>
+                  <button onclick="responder(this, '3')">2</button>
+                  <button onclick="responder(this, '3')">3</button>
+                  <button onclick="responder(this, '3')">4</button>
+              </div>
+              <div id="pergunta4" class="pergunta" style="display: none;">
+                  <h2>Qual era a dupla de ataque fo São Paulo FC na final do mudial de 2005?</h2>
+                  <button onclick="responder(this, 'Aloísio e Amoroso')">Amoroso e Grafite</button>
+                  <button onclick="responder(this, 'Aloísio e Amoroso')">Tardelli e Luizão</button>
+                  <button onclick="responder(this, 'Aloísio e Amoroso')">Luizão e Grafite</button>
+                  <button onclick="responder(this, 'Aloísio e Amoroso')">Aloísio e Amoroso</button>
+              </div>
+              <div id="pergunta5" class="pergunta" style="display: none;">
+                  <h2>Quem é o maior artilheiro da historia do São Paulo FC?</h2>
+                  <button onclick="responder(this, 'Serginho Chulapa')">Raí</button>
+                  <button onclick="responder(this, 'Serginho Chulapa')">Serginho Chulapa</button>
+                  <button onclick="responder(this, 'Serginho Chulapa')">Luís Fabiano</button>
+                  <button onclick="responder(this, 'Serginho Chulapa')">Careca</button>
+              </div>
+              <div id="pergunta6" class="pergunta" style="display: none;">
+                  <h2>Em que ano o São Paulo FC venceu seu primeiro Campeonato Brasileiro</h2>
+                  <button onclick="responder(this, '1986')">1977</button>
+                  <button onclick="responder(this, '1986')">1991</button>
+                  <button onclick="responder(this, '1986')">1986</button>
+                  <button onclick="responder(this, '1986')">2005</button>
+              </div>
+              <div id="pergunta7" class="pergunta" style="display: none;">
+                  <h2>Qual foi o primeiro treinador a conquistar a Copa Libertadores pelo São Paulo FC?</h2>
+                  <button onclick="responder(this, 'Telê Santana')">Telê Santana</button>
+                  <button onclick="responder(this, 'Telê Santana')">Muricy Ramalho</button>
+                  <button onclick="responder(this, 'Telê Santana')">Paulo Autuori</button>
+                  <button onclick="responder(this, 'Telê Santana')">Emerson Leão</button>
+              </div>
+              <div id="pergunta8" class="pergunta" style="display: none;">
+                  <h2>Qual Jogador é conhecido como o M1TO do São Paulo?</h2>
+                  <button onclick="responder(this, 'Rogerio Ceni')">Kaká</button>
+                  <button onclick="responder(this, 'Rogerio Ceni')">Cafu</button>
+                  <button onclick="responder(this, 'Rogerio Ceni')">Luís Fabiano</button>
+                  <button onclick="responder(this, 'Rogerio Ceni')">Rogerio Ceni</button>
+              </div>
+              <div id="pergunta9" class="pergunta" style="display: none;">
+                  <h2>Qual a capacidade do estádio do São Paulo FC?</h2>
+                  <button onclick="responder(this, '66.795')">52.000</button>
+                  <button onclick="responder(this, '66.795')">66.795</button>
+                  <button onclick="responder(this, '66.795')">101.859</button>
+                  <button onclick="responder(this, '66.795')">73.937</button>
+              </div>
+              <div id="pergunta10" class="pergunta" style="display: none;">
+                  <h2>Qual o nome da maior torcida organizada do São Paulo FC?</h2>
+                  <button onclick="responder(this, 'Independente')">Independente</button>
+                  <button onclick="responder(this, 'Independente')">Dragões da Real</button>
+                  <button onclick="responder(this, 'Independente')">Falange</button>
+                  <button onclick="responder(this, 'Independente')">Mancha Verde</button>
+              </div>
+          </div>
+          <div id="resultados" style="display: none;">
+              <h2>Resultados do Quiz</h2>
+              <canvas id="graficoResultados"></canvas>
+              <div id="indicadores">
+                  <p>Média de acertos: <span id="media"></span></p>
+                  <!-- <p>Você está <span id="acimaOuAbaixo"></span> da média.</p> -->
+                  <p>Desempenho: <span id="desempenho"></span></p>
+              </div>
+              <button onclick="voltar()">Voltar</button>
+          </div>
+      </div>
+  </div>
+</div>
+<div id="ir_para_bd"></div>
 </body>
+<script>
+    
+  // Define o nome do usuário a partir da sessão
+  const b_usuario = document.getElementById('b_usuario');
+  if (sessionStorage.NOME_USUARIO) {
+      b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  } else {
+      b_usuario.innerHTML = 'usuário';
+  }
+
+  var alternativasCertas = 0;
+  var alternativasErradas = 0;
+
+  function iniciar() {
+      document.getElementById('inicarQuiz').style.display = 'none';
+      document.getElementById('quiz').style.display = 'block';
+  }
+
+  var perguntaAtual = 1;
+  var totalDePerguntas = 10;
+
+  function responder(botao, respostaCorreta) {
+      const respostaSelecionada = botao.textContent;
+      if (respostaSelecionada === respostaCorreta) {
+          alternativasCertas++;
+      } else {
+          alternativasErradas++;
+      }
+      document.getElementById("pergunta" + perguntaAtual).style.display = "none";
+      if (perguntaAtual < totalDePerguntas) {
+          perguntaAtual++;
+          document.getElementById("pergunta" + perguntaAtual).style.display = "block";
+      } else {
+          ir_para_bd.innerHTML = `<button onclick="bancar(), time">Finalizar</button>` //exibirResultados();
+      }
+  }
+
+  function obterIdUsuario() {
+      return sessionStorage.ID_USUARIO || 'desconhecido';
+  }
+
+  function exibirResultados() {
+      const fk_usuario = obterIdUsuario();
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("resultados").style.display = "block";
+
+      const totalRespostas = alternativasCertas + alternativasErradas;
+      const media = (alternativasCertas / totalRespostas) * 100;
+      document.getElementById("media").textContent = media.toFixed(2) + "%";
+
+      // const mediaGeral = 70;
+      // if (media >= mediaGeral) {
+      //     document.getElementById("acimaOuAbaixo").textContent = "acima";
+      // } else {
+      //     document.getElementById("acimaOuAbaixo").textContent = "abaixo";
+      // }
+
+      var desempenho = '';
+      if (media >= 80) {
+          desempenho = 'Bom';
+      } else if (media >= 50) {
+          desempenho = 'Médio';
+      } else {
+          desempenho = 'Ruim';
+      }
+      document.getElementById("desempenho").textContent = desempenho;
+
+      fetch('/medidas/salvar-resultados', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              acertos: alternativasCertas,
+              erros: alternativasErradas,
+              fk_usuario: fk_usuario
+          })
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Erro ao salvar resultados');
+              }
+              return response.json();
+          })
+          .then(data => {
+              console.log('Resultados salvos com sucesso:', data);
+          })
+          .catch(error => {
+              console.error('Erro ao salvar resultados:', error);
+          });
+
+      const ctx = document.getElementById('graficoResultados').getContext('2d');
+      const quizChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: ['Respostas Corretas', 'Respostas Incorretas'],
+              datasets: [{
+                  label: 'Quantidade',
+                  data: [alternativasCertas, alternativasErradas],
+                  backgroundColor: [
+                      'rgba(75, 192, 192)',
+                      'rgba(255, 99, 132)',
+                  ],
+                  borderColor: [
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(255, 99, 132, 1)',
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+  }
+
+  function voltar() {
+      window.location.href = './dashboard.html';
+  }
+
+  function limparSessao() {
+      sessionStorage.clear();
+      window.location.href = '../index.html';
+  }
+
+  function bancar() {
+      var alternativasCertasVar = alternativasCertas;
+      var alternativasErradasVar = alternativasErradas;
+      // var idUsuario = idUsuario;
+
+
+      fetch("/usuarios/bancar", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              alternativasCertasServer: alternativasCertasVar,
+              alternativasErradasServer: alternativasErradasVar,
+              idUsuarioServer: sessionStorage.ID_USUARIO,
+          }),
+      })
+  }
+</script>
 
 </html>

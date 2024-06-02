@@ -31,7 +31,7 @@
 
     <div class="janela">
         <div class="header-left">
-            <h1>São Paulo F.C.</h1>
+            <h1>Blog Tricolor</h1>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
@@ -39,7 +39,7 @@
 
             <div class="btn-nav-white">
                 <a href="./cards.html">
-                    <h3>Quizz</h3>
+                    <h3>Quiz</h3>
                 </a>
             </div>
 
@@ -85,13 +85,13 @@
         document.getElementById("graficos").innerHTML +=` 
         <div id="grafico">
             <h3 class="tituloGraficos">
-                <span id="tituloGrafico">Nossa Comunidade</span>
+                <span id="tituloGrafico">Sua pontuação foi:</span>
             </h3>
             <div class="graph">
                 <canvas id="myChartCanvas"></canvas>
             </div>
             <div class="label-captura">
-                <p id="avisoCaptura" style="color: white">Teste</p>
+                <p id="avisoCaptura" style="color: white">Concluido</p>
             </div>
         </div>`
     ;
@@ -122,15 +122,15 @@
     function plotarGrafico(resposta) {
         console.log('Iniciando plotagem do gráfico...');
 
-        let labels = ["Results in english"];
+        let labels = ["Resultado:"];
 
         let dados = {
             labels: labels,
             datasets: [{
                 label: 'Certas',
                 data: [resposta[0].respostascertas],
-                backgroundColor: 'blue',
-                borderColor: 'blue',
+                backgroundColor: 'green',
+                borderColor: 'green',
                 borderWidth: 1
             },
             {

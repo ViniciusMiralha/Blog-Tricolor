@@ -428,7 +428,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .corpo3 {
-  background-color: #ffffff3e;
+  background-color: #570000;
   display: flex;
   height: 500px;
   align-items: center;
@@ -492,5 +492,14 @@ color: #ffffff;
   height: var(--tamanho-banner);
   color: rgb(255, 255, 255);
   background-image: url('banner3.0.jpg');
+  background-size: cover;
+}
+
+/* ESTADIO HTML */
+
+.banner4 {
+  height: var(--tamanho-banner);
+  color: rgb(255, 255, 255);
+  background-image: url('https://d1lmhdch9ok5y9.cloudfront.net/5oLGcgncg6aShXxnStMzxOu0sjk=/1150x235/https%3A//d1q5r6jf4yxfe1.cloudfront.net/public/Imagem/2022/01/03/estadio_morumbi.jpg');
   background-size: cover;
 }

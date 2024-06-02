@@ -273,8 +273,9 @@ body {
 .graph {
   width: 70%;
   margin: auto;
-  padding-top: 10px;
+  padding-top: 50px;
 }
+
 
 .tituloGraficos {
   color: rgb(216, 216, 216);

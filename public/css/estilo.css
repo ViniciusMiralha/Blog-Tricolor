@@ -487,3 +487,10 @@ color: #ffffff;
   margin-left: 10px;
   
 }
+
+.banner3{
+  height: var(--tamanho-banner);
+  color: rgb(255, 255, 255);
+  background-image: url('banner3.0.jpg');
+  background-size: cover;
+}

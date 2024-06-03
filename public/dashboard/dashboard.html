@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>São Paulo F.C.| Dashboards</title>
+    <title>Blog Tricolor | Dashboard</title>
 
     
     <link rel="stylesheet" href="./../css/dashboards.css">
@@ -145,11 +145,32 @@
         // , resposta[0].erradas
 
         // Configuração do gráfico
-        const config = {
+       // Configuração do gráfico
+       const config = {
             type: 'bar',
             data: dados,
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white' // Cor das legendas
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'white' // Cor dos rótulos do eixo X
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: 'white' // Cor dos rótulos do eixo Y
+                        }
+                    }
+                }
+            }
         };
-
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
             document.getElementById('myChartCanvas'),

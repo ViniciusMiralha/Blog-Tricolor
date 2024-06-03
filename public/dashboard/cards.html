@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-  <link rel="icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+  <link rel="icon" href="C:\Users\Aluno\Documents\projetoindividualvm\public\css\icon.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -104,7 +104,7 @@
                 </div>
               </div>
               <div id="pergunta6" class="pergunta" style="display: none;">
-                  <h2>Em que ano o São Paulo FC venceu seu primeiro Campeonato Brasileiro</h2>
+                  <h2 style="color: white;">Em que ano o São Paulo FC venceu seu primeiro Campeonato Brasileiro</h2>
                   <div class="perguntas-style">
                   <button onclick="responder(this, '1986')">1977</button>
                   <button onclick="responder(this, '1986')">1991</button>
@@ -113,7 +113,7 @@
                 </div>
               </div>
               <div id="pergunta7" class="pergunta" style="display: none;">
-                  <h2>Qual foi o primeiro treinador a conquistar a Copa Libertadores pelo São Paulo FC?</h2>
+                  <h2 style="color: white;">Qual foi o primeiro treinador a conquistar a Copa Libertadores pelo São Paulo FC?</h2>
                   <div class="perguntas-style">
                   <button onclick="responder(this, 'Telê Santana')">Telê Santana</button>
                   <button onclick="responder(this, 'Telê Santana')">Muricy Ramalho</button>
@@ -122,7 +122,7 @@
               </div>
          </div>
               <div id="pergunta8" class="pergunta" style="display: none;">
-                  <h2>Qual Jogador é conhecido como o M1TO do São Paulo?</h2>
+                  <h2 style="color: white;">Qual Jogador é conhecido como o M1TO do São Paulo?</h2>
                   <div class="perguntas-style">
                   <button onclick="responder(this, 'Rogerio Ceni')">Kaká</button>
                   <button onclick="responder(this, 'Rogerio Ceni')">Cafu</button>
@@ -131,7 +131,7 @@
               </div>
             </div>
               <div id="pergunta9" class="pergunta" style="display: none;">
-                  <h2>Qual a capacidade do estádio do São Paulo FC?</h2>
+                  <h2 style="color: white;">Qual a capacidade do estádio do São Paulo FC?</h2>
                   <div class="perguntas-style">
                   <button onclick="responder(this, '66.795')">52.000</button>
                   <button onclick="responder(this, '66.795')">66.795</button>
@@ -140,7 +140,7 @@
                 </div>
               </div>
               <div id="pergunta10" class="pergunta" style="display: none;">
-                  <h2>Qual o nome da maior torcida organizada do São Paulo FC?</h2>
+                  <h2 style="color: white;">Qual o nome da maior torcida organizada do São Paulo FC?</h2>
                   <div class="perguntas-style">
                   <button onclick="responder(this, 'Independente')">Independente</button>
                   <button onclick="responder(this, 'Independente')">Dragões da Real</button>
@@ -316,6 +316,7 @@
               idUsuarioServer: sessionStorage.ID_USUARIO,
           }),
       })
+      window.location='dashboard.html'
   }
 
   var timeout = setTimeout(function mostrarQuiz() {
@@ -347,6 +348,7 @@
                     erradasDashboard = erradasMetrica;
                 })
             }
+            
         })
     }, 200)
 </script>

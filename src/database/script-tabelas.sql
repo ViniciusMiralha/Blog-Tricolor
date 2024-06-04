@@ -17,12 +17,14 @@ CREATE TABLE usuario (
 	senha VARCHAR(50)
 );
 
-create table quizz (
-idQuizz int primary key auto_increment,
+create table quiz (
+idQuiz int primary key auto_increment,
 respostascertas int not null, 
 respostaserradas int not null,
 fk_usuario INT,
 FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
 );
 
+select * from usuario;
 
+select * from quiz;

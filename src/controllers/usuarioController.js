@@ -124,9 +124,11 @@ function mostrarQuiz(req, res) {
 }
 
 function procurarQuiz(req, res) {
-    const limitedelinhas = 1;
+    var idUsuario = req.body.idUsuarioServer
 
-    usuarioModel.procurarQuiz(limitedelinhas)
+  
+
+    usuarioModel.procurarQuiz(idUsuario)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -141,8 +143,10 @@ function procurarQuiz(req, res) {
 }
 
 function quizatual(req, res) {
+    var idUsuario = req.body.idUsuarioServer
 
-    usuarioModel.quizatual()
+
+    usuarioModel.quizatual(idUsuario)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);

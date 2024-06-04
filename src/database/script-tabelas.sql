@@ -6,9 +6,9 @@
 comandos para mysql server
 */
 
-CREATE DATABASE projetoindividual;
+CREATE DATABASE projetoindividualblogtricolor;
 
-USE projetoindividual;
+USE projetoindividualblogtricolor;
 
 CREATE TABLE usuario (
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -24,7 +24,3 @@ respostaserradas int not null,
 fk_usuario INT,
 FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
 );
-
-select * from usuario;
-
-select * from quiz;

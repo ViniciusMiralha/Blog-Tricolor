@@ -679,7 +679,7 @@ body::-webkit-scrollbar-thumb {
   border: 1px solid #f1f1f1;
   perspective: 1000px;
   /* Remove this if you don't want the 3D effect */
-  margin: 100px;
+  margin: 50px;
   margin-bottom: 10%;
 }
 

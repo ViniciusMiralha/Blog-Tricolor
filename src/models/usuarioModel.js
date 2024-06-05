@@ -39,12 +39,13 @@ function mostrarQuiz(idUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function mostrarQuiz():", idUsuario);
     
     var instrucaoSql = `
-    SELECT quiz.respostascertas AS 'Respostas corretas', 
-	   quiz.respostaserradas AS 'Respostas incorretas',
-       usuario.nome AS 'Nome do usuario'
+    SELECT quiz.idQuiz,
+       quiz.respostascertas, 
+	   quiz.respostaserradas,
+       usuario.nome
 FROM quiz
 	JOIN usuario
-		ON fk_usuario = ${idUsuario};
+		ON fk_usuario = ${idUsuario} WHERE idQuiz = (SELECT max(idQuiz) FROM quiz WHERE fk_usuario = ${idUsuario} );
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -55,12 +56,13 @@ function procurarQuiz(idUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function procurarQuiz():", idUsuario);
     
     var instrucaoSql = `
-    SELECT quiz.respostascertas AS 'Respostas corretas', 
-	   quiz.respostaserradas AS 'Respostas incorretas',
-       usuario.nome AS 'Nome do usuario'
+    SELECT quiz.idQuiz,
+       quiz.respostascertas, 
+	   quiz.respostaserradas,
+       usuario.nome
 FROM quiz
 	JOIN usuario
-		ON fk_usuario = ${idUsuario};
+		ON fk_usuario = ${idUsuario} WHERE idQuiz = (SELECT max(idQuiz) FROM quiz WHERE fk_usuario = ${idUsuario} );
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -70,12 +72,13 @@ function quizatual(idUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function quizatual():", idUsuario);
     
     var instrucaoSql = `
-    SELECT quiz.respostascertas AS 'Respostas corretas', 
-	   quiz.respostaserradas AS 'Respostas incorretas',
-       usuario.nome AS 'Nome do usuario'
+    SELECT quiz.idQuiz,
+       quiz.respostascertas, 
+	   quiz.respostaserradas,
+       usuario.nome'
 FROM quiz
 	JOIN usuario
-		ON fk_usuario = ${idUsuario};
+		ON fk_usuario = ${idUsuario} WHERE idQuiz = (SELECT max(idQuiz) FROM quiz WHERE fk_suario = ${idUsuario} );
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

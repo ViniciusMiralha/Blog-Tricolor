@@ -373,7 +373,7 @@ input {
 }
 
 .simulador .container p {
- margin: 10px;
+ margin: 15px;
 }
 
 .simulador .container h2 {
@@ -541,7 +541,7 @@ body::-webkit-scrollbar-thumb {
 .banner2 {
   height: var(--tamanho-banner);
   color: rgb(255, 255, 255);
-  background-image: url('https://s2-ge.glbimg.com/CfNLbjVmwY1Lz0MmiTJUy4HgbzM=/0x0:1500x948/1008x0/smart/filters:strip_icc()/s.glbimg.com/es/ge/f/original/2013/12/10/saopaulo_campeaomundial_2005_get_95.jpg');
+  background-image: url('FUNDOIDOLOS.avif');
   background-size: cover;
 }
 
@@ -584,7 +584,7 @@ body::-webkit-scrollbar-thumb {
 .banner3 {
   height: var(--tamanho-banner);
   color: rgb(255, 255, 255);
-  background-image: url('banner4.jpg');
+  background-image: url('BEMVINDOAOINFENO.webp');
   background-size: cover;
 }
 
@@ -628,7 +628,7 @@ body::-webkit-scrollbar-thumb {
 .banner4 {
   height: var(--tamanho-banner);
   color: rgb(255, 255, 255);
-  background-image: url('https://i.pinimg.com/originals/3b/25/a6/3b25a6ce2d357aa1c465bc92b024245d.jpg');
+  background-image: url('FRENTE-MORUMBI.jpg');
   background-size: cover;
 
 }

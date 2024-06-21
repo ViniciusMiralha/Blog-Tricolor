@@ -2,195 +2,210 @@
 <html lang="pt-br">
 
 <head>
-    <!-- <link rel="shortcut icon" href="C:\Users\Aluno\Documents\projetoindividualvm\public\css\icon.ico" type="image/x-icon"> -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Tricolor | Dashboard</title>
 
-    
+    <!-- Importação dos estilos CSS -->
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
     <script src="../js/sessao.js"></script>
 
+    <!-- Importação da fonte do Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <!-- scripts do Chart.js - 2022-1 -->
+    <!-- Importação da biblioteca Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!--FONT AWESOME-->
+    <!-- Importação do FontAwesome para ícones -->
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
-
 <body>
-
-
+    <!-- Estrutura da janela principal da dashboard -->
     <div class="janela">
+        <!-- Menu lateral esquerdo -->
         <div class="header-left">
             <h1>Blog Tricolor</h1>
-
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
-
+            <!-- Botões de navegação -->
             <div class="btn-nav-white">
                 <a href="./inicial.html">
-                  <h3>Inicial</h3>
+                    <h3>Inicial</h3>
                 </a>
-              </div>
-
+            </div>
             <div class="btn-nav-white">
                 <a href="./cards.html">
                     <h3>Quiz</h3>
                 </a>
             </div>
-
             <div class="btn-nav">
-
                 <h3>Gráficos</h3>
-
             </div>
-
-        
+            <!-- Botão de logout -->
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
-
         </div>
 
+        <!-- Conteúdo da dashboard -->
         <div class="dash">
-            <div id="alerta">
-            </div>
-
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
+            <!-- Div para exibir alertas -->
+            <div id="alerta"></div>
+            <!-- Div para botões da dashboard (opcional, não está implementado) -->
+            <div class="btns-dash" id="btnAquario"></div>
+            <!-- Div para exibir gráficos e estatísticas -->
             <div id="graficos">
+                <div id="grafico">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloGrafico">Sua pontuação foi:</span>
+                    </h3>
+                    <!-- Div para o gráfico -->
+                    <div class="graph">
+                        <canvas id="myChartCanvas"></canvas>
+                    </div>
+                    <!-- Div para exibição de informações e status -->
+                    <div class="label-captura">
+                        <!-- Parágrafo para exibir a porcentagem de acertos -->
+                        <p id="porcentagemAcertos" style="color: white">Acertos: <span id="spanPorcentagem"></span></p>
+                        <!-- Parágrafo para exibir o status da média -->
+                        <p id="statusMedia" style="color: white"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Script JavaScript para interação dinâmica na página -->
+    <script>
+        // Inserindo o nome do usuário na página
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-</body>
+        let proximaAtualizacao;
 
-</html>
+        // Ao carregar a página, chama a função para obter dados do quiz
+        window.onload = exibirQuiz();
 
-<script>
-  
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
-    let proximaAtualizacao;
-
-    window.onload = exibirQuiz();
-
-    function exibirQuiz() {
-        document.getElementById("graficos").innerHTML +=` 
-        <div id="grafico">
-            <h3 class="tituloGraficos">
-                <span id="tituloGrafico">Sua pontuação foi:</span>
-            </h3>
-            <div class="graph">
-                <canvas id="myChartCanvas"></canvas>
-            </div>
-            <div class="label-captura">
-                <p id="avisoCaptura" style="color: white">Concluido</p>
-            </div>
-        </div>`
-    ;
-
-        obterDadosGrafico();
-    }
-
-    function obterDadosGrafico() {
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
+        // Função para iniciar o processo de exibição do quiz
+        function exibirQuiz() {
+            obterDadosGrafico();
         }
 
-        fetch(`/usuarios/procurarQuiz/`, {method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                idUsuarioServer: sessionStorage.ID_USUARIO
-            })}).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    plotarGrafico(resposta);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
+        // Função para obter os dados do quiz através de requisição fetch
+        function obterDadosGrafico() {
+            if (proximaAtualizacao != undefined) {
+                clearTimeout(proximaAtualizacao);
             }
-        })
-            .catch(function (error) {
+
+            // Requisição POST para obter os dados do quiz mais recente do usuário
+            fetch(`/usuarios/procurarQuiz/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idUsuarioServer: sessionStorage.ID_USUARIO
+                })
+            }).then(function (response) {
+                // Tratamento da resposta da requisição
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        plotarGrafico(resposta); // Chama a função para plotar o gráfico com os dados recebidos
+                        calcularPorcentagem(resposta); // Chama a função para calcular e exibir a porcentagem de acertos
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            }).catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
             });
-    }
+        }
 
-    function plotarGrafico(resposta) {
-        console.log('Iniciando plotagem do gráfico...');
+        // Função para plotar o gráfico com os dados recebidos
+        function plotarGrafico(resposta) {
+            console.log('Iniciando plotagem do gráfico...');
 
-        let labels = ["Resultado:"];
-
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Certas',
-                data: [resposta[0].respostascertas],
-                backgroundColor: 'green',
-                borderColor: 'green',
-                borderWidth: 1
-            },
-            {
-                label: 'Erradas',
-                data: [resposta[0].respostaserradas],
-                backgroundColor: 'red',
-                borderColor: 'red',
-                borderWidth: 1
-            }]
-        };
-
-        // , resposta[0].erradas
-
-        // Configuração do gráfico
-       // Configuração do gráfico
-       const config = {
-            type: 'bar',
-            data: dados,
-            options: {
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'white' // Cor das legendas
-                        }
+            // Definição dos labels e dos dados para o gráfico de barras
+            let labels = ["Resultado:"];
+            let dados = {
+                labels: labels,
+                datasets: [{
+                        label: 'Certas',
+                        data: [resposta[0].respostascertas], // Define os dados de respostas certas para o gráfico
+                        backgroundColor: 'green',
+                        borderColor: 'green',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Erradas',
+                        data: [resposta[0].respostaserradas], // Define os dados de respostas erradas para o gráfico
+                        backgroundColor: 'red',
+                        borderColor: 'red',
+                        borderWidth: 1
                     }
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            color: 'white' // Cor dos rótulos do eixo X
+                ]
+            };
+
+            // Configurações do gráfico usando a biblioteca Chart.js
+            const config = {
+                type: 'bar',
+                data: dados,
+                options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'white' // Cor das legendas no gráfico
+                            }
                         }
                     },
-                    y: {
-                        ticks: {
-                            color: 'white' // Cor dos rótulos do eixo Y
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: 'white' // Cor dos ticks no eixo X
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: 'white' // Cor dos ticks no eixo Y
+                            }
                         }
                     }
                 }
+            };
+
+            // Criação de uma nova instância de gráfico usando Chart.js
+            let myChart = new Chart(
+                document.getElementById('myChartCanvas'),
+                config
+            );
+        }
+
+        // Função para calcular a porcentagem de acertos e exibir o status da média
+        function calcularPorcentagem(resposta) {
+            // Calcula a porcentagem de acertos com base nos dados recebidos
+            let total = resposta[0].respostascertas + resposta[0].respostaserradas;
+            let porcentagem = (resposta[0].respostascertas / total) * 100;
+            // Exibe a porcentagem calculada no elemento spanPorcentagem
+            document.getElementById('spanPorcentagem').innerText = `${porcentagem.toFixed(2)}%`;
+
+            // Determina o status da média e define a cor do texto
+            let statusMedia = document.getElementById('statusMedia');
+            if (porcentagem === 50) {
+                statusMedia.innerText = ". Você está na média.";
+                statusMedia.style.color = "yellow"; // Cor amarela para média
+            } else if (porcentagem < 50) {
+                statusMedia.innerText = ". Você está abaixo da média.";
+                statusMedia.style.color = "red"; // Cor vermelha para abaixo da média
+            } else {
+                statusMedia.innerText = ". Você está acima da média.";
+                statusMedia.style.color = "green"; // Cor verde para acima da média
             }
-        };
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById('myChartCanvas'),
-            config
-        );
+        }
+    </script>
+</body>
 
-    }
-
-    
-</script>
+</html>

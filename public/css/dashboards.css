@@ -559,15 +559,17 @@ canvas {
 
 }
 .perguntas-style{
-  display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+.perguntas-style button{
+  width: 100%;
+  height: 40px;
+  font-size: large;
 }
 button{
   display: flex;
   border-radius: 50px;
- display: flex;
-  
   align-items: center;
   justify-content: center;
   width: 100px;
@@ -597,18 +599,14 @@ main {
 }
 
 #ir_para_bd {
-  
-  margin-top: 20%;
-  margin-right: 20%;
-  height: auto;
-  width: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:#4d0000;
-  color: rgb(0, 0, 0);
+  
+  
 }
 .containerquizz {
+  display: flex;
 align-items: center;
 justify-content: center;
 } 
@@ -638,4 +636,36 @@ justify-content: center;
 }
 #porcentagemAcertos{
   font-size: x-large;
+}
+
+#inicarQuiz {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+#inicarQuiz h1{
+  display: flex;
+  align-self: center;
+  margin: 2%;
+}
+
+#inicarQuiz button{
+  margin: 5%;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  border: 5px double red  ;
+  
+}
+#quiz{
+ display: flex;
+  height: 300px;
+  width: 600px;
+  align-self: center;
+  justify-self: center;
+  align-content: center;
+}
+#quiz button{
+  align-self: center;
+  border: 5px double red;
 }

@@ -55,8 +55,7 @@
         <div class="dash">
             <!-- Div para exibir alertas -->
             <div id="alerta"></div>
-            <!-- Div para botões da dashboard (opcional, não está implementado) -->
-            <div class="btns-dash" id="btnAquario"></div>
+          
             <!-- Div para exibir gráficos e estatísticas -->
             <div id="graficos">
                 <div id="grafico">
@@ -69,9 +68,9 @@
                     </div>
                     <!-- Div para exibição de informações e status -->
                     <div class="label-captura">
-                        <!-- Parágrafo para exibir a porcentagem de acertos -->
+                        <!-- Parágrafo para exibir a porcentagem de acertos 21/06-->
                         <p id="porcentagemAcertos" style="color: white">Acertos: <span id="spanPorcentagem"></span></p>
-                        <!-- Parágrafo para exibir o status da média -->
+                        <!-- Parágrafo para exibir o status da média 21/06 -->
                         <p id="statusMedia" style="color: white"></p>
                     </div>
                 </div>
@@ -184,15 +183,15 @@
             );
         }
 
-        // Função para calcular a porcentagem de acertos e exibir o status da média
+        // Função para calcular a porcentagem de acertos e exibir o status da média 21/06
         function calcularPorcentagem(resposta) {
             // Calcula a porcentagem de acertos com base nos dados recebidos
             let total = resposta[0].respostascertas + resposta[0].respostaserradas;
             let porcentagem = (resposta[0].respostascertas / total) * 100;
-            // Exibe a porcentagem calculada no elemento spanPorcentagem
+            // Exibe a porcentagem calculada no elemento spanPorcentagem que é utilizado dentro do gráfico
             document.getElementById('spanPorcentagem').innerText = `${porcentagem.toFixed(2)}%`;
 
-            // Determina o status da média e define a cor do texto
+            // Determina o status da média e define a cor do texto 21/06
             let statusMedia = document.getElementById('statusMedia');
             if (porcentagem === 50) {
                 statusMedia.innerText = ". Você está na média.";

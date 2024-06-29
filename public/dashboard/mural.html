@@ -179,6 +179,8 @@
         });
     }
 
+    // estou arrumando esse fetch pos ao usuario acessar e comentar um aviso no nosso bate papo, a funcionalidade ainda nao esta funcionando
+
     function atualizarFeed() {
         fetch("/avisos/listar").then(function (resposta) {
             if (resposta.ok) {

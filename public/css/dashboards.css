@@ -126,6 +126,7 @@ body {
   height: 100vh;
   overflow: auto;
 }
+/* div para colocar as funcionalidades da pagina inicial dentro e organizar oque o usuario podera acessar na dash */
 .inicial1{
   width: auto;
   height: auto;
@@ -158,7 +159,11 @@ body {
   font-size: x-large;
   margin-top: 5%;
   background-color: #ff0000;
-  border-radius: 50px;
+ 
+}
+.inicialquiz1 a{
+color: white;
+
 }
 .inicalforum{
   width: 100px;
@@ -171,7 +176,11 @@ body {
   font-size: x-large;
   margin-top: 5%;
   background-color: #ff0000;
-  border-radius: 50px;
+  
+}
+.inicalforum a{
+  color: white;
+
 }
 
 .area-parametros-alerta {
@@ -600,12 +609,13 @@ canvas {
     box-shadow: none;
   }
 } */
+ /* criei essa tags para personalizar a pagina do quiz /embelezar para dar uma melhor experiencia visual ao usuario */
 .containerquizz{
   width: 100%;
   height: 100%;
-
 }
 .perguntas-style{
+  /* alternei de coluna para linha  */
   flex-direction: row;
   justify-content: space-evenly;
 }
@@ -617,6 +627,7 @@ canvas {
 button{
   display: flex;
   border-radius: 50px;
+  /* centralizar o botao que antes estava perdido na pagina */
   align-items: center;
   justify-content: center;
   width: 100px;

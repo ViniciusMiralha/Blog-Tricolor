@@ -239,15 +239,15 @@
       //     document.getElementById("acimaOuAbaixo").textContent = "abaixo";
       // }
 
-      var desempenho = '';
-      if (media >= 80) {
-          desempenho = 'Bom';
-      } else if (media >= 50) {
-          desempenho = 'Médio';
-      } else {
-          desempenho = 'Ruim';
-      }
-      document.getElementById("desempenho").textContent = desempenho;
+    //   var desempenho = '';
+    //   if (media >= 80) {
+    //       desempenho = 'Bom';
+    //   } else if (media >= 50) {
+    //       desempenho = 'Médio';
+    //   } else {
+    //       desempenho = 'Ruim';
+    //   }
+    //   document.getElementById("desempenho").textContent = desempenho;
 
       fetch('/medidas/salvar-resultados', {
           method: 'POST',

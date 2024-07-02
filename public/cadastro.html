@@ -62,7 +62,14 @@
                          Para inserir mais um campo, copie uma das inputs abaixo.
                          Assim que inserir vá para o script abaixo.
                      -->
-          
+
+         <!-- 01/07/2024-Criação do campo Idolos para que o usuario selecione seu idolo do clube -->
+          <div class="campo">
+            <span>Ídolo:</span>
+            <select name="idolos" id="listaIdolos">
+              <option selected>Selecione um Ídolo</option>
+            </select>
+          </div>
           <div class="campo">
             <span>Nome:</span>
             <input id="nome_input" type="text" placeholder="Seu nome" />
@@ -112,11 +119,12 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var idoloVar = listaIdolos.value;
     var arroba = emailVar.indexOf('@');
     var ponto = emailVar.indexOf('.');
 
 
-    if (
+    if ( idoloVar == "" ||
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
@@ -128,12 +136,12 @@
 
       finalizarAguardar();
       return false;
-      
-     } else if (nomeVar.lenght < 2) {
+
+    } else if (nomeVar.lenght< 2) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(Nome deve conter pelo menos 2 caracteres)";
-        
+
       finalizarAguardar();
       return false;
     }
@@ -142,23 +150,23 @@
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(Email deve conter @)";
-        
+
       finalizarAguardar();
       return false;
     }
 
-      else if (ponto < 0) {
+    else if (ponto < 0) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(email deve conter .)";
-        
+
       finalizarAguardar();
       return false;
     } else if (senhaVar.lenght <= 6) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(Senha deve ser maior que 6 caracteres)";
-        
+
       finalizarAguardar();
       return false;
 
@@ -166,11 +174,11 @@
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(Senha deve ser igual a confirmação de senha)";
-        
+
       finalizarAguardar();
       return false;
 
-    }else {
+    } else {
       setInterval(sumirMensagem, 5000);
     }
 
@@ -185,6 +193,9 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
+        
+        //  01/07/2024-criação rota dos idolos
+        idoloServer: idoloVar,
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar
@@ -216,23 +227,23 @@
 
     return false;
   }
-/*
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
-          });
-        });
+  
+    function listar() {
+      fetch("/idolos/listar", {
+        method: "GET",
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-*/
+        .then(function (resposta) {
+          resposta.json().then((idolos) => {
+            idolos.forEach((idolo) => {
+              listaIdolos.innerHTML += `<option value='${idolo.id}'>${idolo.nome}</option>`;
+            });
+          });
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+    }
+  
   function sumirMensagem() {
     cardErro.style.display = "none";
   }

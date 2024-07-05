@@ -19,8 +19,8 @@ function buscarPorNome(nome) {
   return database.executar(instrucaoSql);
 }
 
-function buscarPorId(id) {
-  var instrucaoSql = `SELECT * FROM idolo WHERE id = '${id}'`;
+function buscarPorId(idIdolo) {
+  var instrucaoSql = `SELECT * FROM idolo WHERE idIdolo = '${idIdolo}'`;
 
   return database.executar(instrucaoSql);
 }

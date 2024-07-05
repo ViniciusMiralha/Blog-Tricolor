@@ -15,9 +15,9 @@ function listar(req, res) {
 }
 
 function buscarPorId(req, res) {
-  var id = req.params.id;
+  var idIdolo = req.params.idIdolo;
 
-  idoloModel.buscarPorId(id).then((resultado) => {
+  idoloModel.buscarPorId(idIdolo).then((resultado) => {
     res.status(200).json(resultado);
   });
 }

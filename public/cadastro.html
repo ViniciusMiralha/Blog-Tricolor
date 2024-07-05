@@ -235,7 +235,7 @@
         .then(function (resposta) {
           resposta.json().then((idolos) => {
             idolos.forEach((idolo) => {
-              listaIdolos.innerHTML += `<option value='${idolo.id}'>${idolo.nome}</option>`;
+              listaIdolos.innerHTML += `<option value='${idolo.idIdolo}'>${idolo.nome}</option>`;
             });
           });
         })

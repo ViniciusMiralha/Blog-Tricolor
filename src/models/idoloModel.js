@@ -1,5 +1,5 @@
 var database = require("../database/config");
-
+// criação de rotas
 function buscarPorId(id) {
   var instrucaoSql = `SELECT * FROM idolo WHERE id = '${id}'`;
 

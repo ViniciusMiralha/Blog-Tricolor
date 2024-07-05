@@ -1,5 +1,5 @@
 var idoloModel = require("../models/idoloModel");
-
+// rota idolos
 function buscarPorNome(req, res) {
   var nome = req.query.nome;
 

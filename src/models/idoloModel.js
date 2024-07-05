@@ -1,19 +1,8 @@
 var database = require("../database/config");
 // criação de rotas
-function buscarPorId(id) {
-  var instrucaoSql = `SELECT * FROM idolo WHERE id = '${id}'`;
-
-  return database.executar(instrucaoSql);
-}
 
 function listar() {
   var instrucaoSql = `SELECT * FROM idolo`;
-
-  return database.executar(instrucaoSql);
-}
-
-function buscarPorNome(nome) {
-  var instrucaoSql = `SELECT * FROM idolo WHERE nome = '${nome}'`;
 
   return database.executar(instrucaoSql);
 }
@@ -24,4 +13,16 @@ function cadastrar(nome) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorNome, buscarPorId, cadastrar, listar };
+function buscarPorNome(nome) {
+  var instrucaoSql = `SELECT * FROM idolo WHERE nome = '${nome}'`;
+
+  return database.executar(instrucaoSql);
+}
+
+function buscarPorId(id) {
+  var instrucaoSql = `SELECT * FROM idolo WHERE id = '${id}'`;
+
+  return database.executar(instrucaoSql);
+}
+
+module.exports = {  listar, cadastrar, buscarPorNome, buscarPorId };

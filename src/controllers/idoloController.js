@@ -40,7 +40,7 @@ function cadastrar(req, res) {
 
 module.exports = {
   buscarPorNome,
+  listar,
   buscarPorId,
   cadastrar,
-  listar,
 };

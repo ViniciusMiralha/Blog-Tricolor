@@ -54,20 +54,22 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    // adição da variavel idolo que puxa o idoloserver idolo -  02/07
     var idIdolo= req.body.idoloServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está indefinido");
     } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Seu email está indefinido!");
     } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else if (idIdolo== undefined) {
-        res.status(400).send("Seu idolo está undefined!");
+        res.status(400).send("Sua senha está indefinida!");
+// adição da mensagem de erro caso esteja como indefinido o idIdolo - 02/07
+    } else if (idIdolo == undefined) {
+        res.status(400).send("Seu idolo está indefinido!");
     } else {
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js 
         usuarioModel.cadastrar(nome, email, senha, idIdolo)
             .then(
                 function (resultado) {

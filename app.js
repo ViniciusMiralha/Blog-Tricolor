@@ -17,7 +17,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-// criacao do router idolos por onde toda a rota começará
+// criacao do router idolos por onde toda a rota começará - 02/07
 var idolosRouter = require("./src/routes/idolos");
 
 app.use(express.json());
@@ -28,6 +28,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
+// criacao do router idolos por onde toda a rota começará - 02/07
 app.use("/idolos", idolosRouter);
 
 app.listen(PORTA_APP, function () {

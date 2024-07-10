@@ -16,6 +16,7 @@ function cadastrar(nome, email, senha, idIdolo) {
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
+    // adição da fk_idolo ao insert de valores no usuario 05/07
     var instrucaoSql = `
         INSERT INTO usuario (nome,  email, senha, fk_idolo) VALUES ('${nome}', '${email}', '${senha}', ${idIdolo});
     `;
@@ -40,12 +41,13 @@ function mostrarQuiz(idUsuario) {
     
     var instrucaoSql = `
     SELECT quiz.idQuiz,
-       quiz.respostascertas, 
-	   quiz.respostaserradas,
-       usuario.nome
-FROM quiz
-	JOIN usuario
-		ON fk_usuario = ${idUsuario} WHERE idQuiz = (SELECT max(idQuiz) FROM quiz WHERE fk_usuario = ${idUsuario} );
+           quiz.respostascertas, 
+           quiz.respostaserradas,
+           usuario.nome
+    FROM quiz
+    JOIN usuario ON quiz.fk_usuario = usuario.idUsuario
+    WHERE quiz.idQuiz = (SELECT MAX(idQuiz) FROM quiz WHERE fk_usuario = ${idUsuario})
+      AND usuario.idUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -57,12 +59,13 @@ function procurarQuiz(idUsuario) {
     
     var instrucaoSql = `
     SELECT quiz.idQuiz,
-       quiz.respostascertas, 
-	   quiz.respostaserradas,
-       usuario.nome
-FROM quiz
-	JOIN usuario
-		ON fk_usuario = ${idUsuario} WHERE idQuiz = (SELECT max(idQuiz) FROM quiz WHERE fk_usuario = ${idUsuario} );
+           quiz.respostascertas, 
+           quiz.respostaserradas,
+           usuario.nome
+    FROM quiz
+    JOIN usuario ON quiz.fk_usuario = usuario.idUsuario
+    WHERE quiz.idQuiz = (SELECT MAX(idQuiz) FROM quiz WHERE fk_usuario = ${idUsuario})
+      AND usuario.idUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

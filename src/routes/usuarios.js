@@ -28,5 +28,8 @@ router.post("/quizatual", function (req, res) {
     usuarioController.quizatual(req, res);
 });
 
+router.get("/rankingquiz", function (req, res) {
+    usuarioController.rankingquiz(req, res);
+});
 
 module.exports = router;

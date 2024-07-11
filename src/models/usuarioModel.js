@@ -87,6 +87,16 @@ FROM quiz
     return database.executar(instrucaoSql);
 }
 
+function rankingquiz(idUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function quizatual():", idUsuario);
+    
+    var instrucaoSql = `
+  SELECT nome, respostascertas FROM (SELECT nome, respostascertas FROM quiz JOIN usuario ON idusuario = fk_usuario ORDER BY respostascertas DESC LIMIT 5) as 5melhores ORDER BY respostascertas ASC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 
 module.exports = {
@@ -95,6 +105,7 @@ module.exports = {
     bancar,
     mostrarQuiz,
     procurarQuiz,
-    quizatual
+    quizatual,
+    rankingquiz
 };
 

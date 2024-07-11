@@ -14,7 +14,9 @@
 
     <!-- Importação da fonte do Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <!-- Importação da biblioteca Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -60,23 +62,33 @@
         <div class="dash">
             <!-- Div para exibir alertas -->
             <div id="alerta"></div>
-          
+
             <!-- Div para exibir gráficos e estatísticas -->
             <div id="graficos">
                 <div id="grafico">
                     <h3 class="tituloGraficos">
                         <span id="tituloGrafico">Sua pontuação foi:</span>
+                        <div class="label-captura">
+                            <!-- Parágrafo para exibir a porcentagem de acertos 21/06-->
+                            <p id="porcentagemAcertos" style="color: white">Acertos: <span id="spanPorcentagem"></span>
+                            </p>
+                            <!-- Parágrafo para exibir o status da média 21/06 -->
+                            <p id="statusMedia" style="color: white"></p>
+                        </div>
                     </h3>
                     <!-- Div para o gráfico -->
-                    <div class="graph">
-                        <canvas id="myChartCanvas"></canvas>
-                    </div>
-                    <!-- Div para exibição de informações e status -->
-                    <div class="label-captura">
-                        <!-- Parágrafo para exibir a porcentagem de acertos 21/06-->
-                        <p id="porcentagemAcertos" style="color: white">Acertos: <span id="spanPorcentagem"></span></p>
-                        <!-- Parágrafo para exibir o status da média 21/06 -->
-                        <p id="statusMedia" style="color: white"></p>
+                    <div class="graficoranking">
+                        <div class="graph">
+
+                            <canvas id="myChartCanvas"></canvas>
+                        </div>
+                        <div class="ranking">
+                            <h1>Ranking</h1>
+                            <div class="rankeados" id="rankeados">
+                             
+                            </div>
+                        </div>
+                        <!-- Div para exibição de informações e status -->
                     </div>
                 </div>
             </div>
@@ -85,6 +97,34 @@
 
     <!-- Script JavaScript para interação dinâmica na página -->
     <script>
+        rankQuiz();
+
+    function rankQuiz() {
+        fetch(`/usuarios/rankingquiz`,{cache: 'no-store'}).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        resposta.reverse();
+                        rankearQuiz(resposta);
+                    });
+                } else {
+                    console.error('Erro Encontrado')
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro ao Ranquear pontuação do quiz: ${error.message}`);
+                });
+
+  }
+
+  function rankearQuiz(resposta) {
+for( index = 0; index < resposta.length; index ++ ){
+    let rankatual = resposta[index];
+    rankeados.innerHTML += ` <p> <span>${index + 1}</span> ${rankatual.nome}:
+                                    <span>${rankatual.respostascertas}</span>
+                                </p>`
+}
+  }
+
         // Inserindo o nome do usuário na página
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
@@ -138,19 +178,19 @@
             let dados = {
                 labels: labels,
                 datasets: [{
-                        label: 'Certas',
-                        data: [resposta[0].respostascertas], // Define os dados de respostas certas para o gráfico
-                        backgroundColor: 'green',
-                        borderColor: 'green',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Erradas',
-                        data: [resposta[0].respostaserradas], // Define os dados de respostas erradas para o gráfico
-                        backgroundColor: 'red',
-                        borderColor: 'red',
-                        borderWidth: 1
-                    }
+                    label: 'Certas',
+                    data: [resposta[0].respostascertas], // Define os dados de respostas certas para o gráfico
+                    backgroundColor: 'green',
+                    borderColor: 'green',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Erradas',
+                    data: [resposta[0].respostaserradas], // Define os dados de respostas erradas para o gráfico
+                    backgroundColor: 'red',
+                    borderColor: 'red',
+                    borderWidth: 1
+                }
                 ]
             };
 
@@ -209,6 +249,7 @@
                 statusMedia.style.color = "green"; // Cor verde para acima da média
             }
         }
+
     </script>
 </body>
 

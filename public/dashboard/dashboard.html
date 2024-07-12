@@ -97,34 +97,46 @@
 
     <!-- Script JavaScript para interação dinâmica na página -->
     <script>
-        rankQuiz();
+ // Função principal que inicia o processo de ranqueamento do quiz
+rankQuiz();
 
-    function rankQuiz() {
-        fetch(`/usuarios/rankingquiz`,{cache: 'no-store'}).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (resposta) {
-                        resposta.reverse();
-                        rankearQuiz(resposta);
-                    });
-                } else {
-                    console.error('Erro Encontrado')
-                }
-            })
-                .catch(function (error) {
-                    console.error(`Erro ao Ranquear pontuação do quiz: ${error.message}`);
+function rankQuiz() {
+    // Faz uma requisição para obter os dados de ranking dos usuários do quiz
+    fetch(`/usuarios/rankingquiz`, { cache: 'no-store' })
+        .then(function (response) {
+            // Verifica se a resposta da requisição foi bem-sucedida
+            if (response.ok) {
+                // Converte a resposta para formato JSON
+                response.json().then(function (resposta) {
+                    // Inverte a ordem dos resultados (último para o primeiro)
+                    resposta.reverse();
+                    // Chama a função para exibir os resultados ranqueados
+                    rankearQuiz(resposta);
                 });
-
-  }
-
-  function rankearQuiz(resposta) {
-for( index = 0; index < resposta.length; index ++ ){
-    let rankatual = resposta[index];
-    rankeados.innerHTML += ` <p> <span>${index + 1}</span> ${rankatual.nome}:
-                                    <span>${rankatual.respostascertas}</span>
-                                </p>`
+            } else {
+                // Loga um erro no console caso a requisição não seja bem-sucedida
+                console.error('Erro Encontrado');
+            }
+        })
+        // Captura e loga erros que ocorrem durante a requisição
+        .catch(function (error) {
+            console.error(`Erro ao Ranquear pontuação do quiz: ${error.message}`);
+        });
 }
-  }
 
+// Função que exibe os resultados do ranking no HTML
+function rankearQuiz(resposta) {
+    // Percorre todos os resultados do ranking
+    for (index = 0; index < resposta.length; index++) {
+        let rankatual = resposta[index]; // Obtém o item atual do ranking
+        // Adiciona o resultado no elemento HTML com o ID 'rankeados'
+        rankeados.innerHTML += ` 
+            <p> 
+                <span>${index + 1} - </span> ${rankatual.nome}: 
+                <span>${rankatual.respostascertas}</span>
+            </p>`;
+    }
+}
         // Inserindo o nome do usuário na página
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 

@@ -164,23 +164,28 @@ function quizatual(req, res) {
             res.status(500).json(erro.sqlMessage);
         });
 }
-
-function rankingquiz(req, res){
+function rankingquiz(req, res) {
+    // Chama a função 'rankingquiz' do modelo 'usuarioModel'
     usuarioModel.rankingquiz()
-      .then(
-        function (resultado) {
-          res.json(resultado);
-        }
-      ).catch(
-        function (erro) {
-          console.log(erro);
-          console.log(
-            "\nErroranking quiz! Erro:",
-            erro.sqlMessage
-          );
-          res.status(500).json(erro.sqlMessage);
-        }
-      )
+        .then(
+            function (resultado) {
+                // Se a promessa (promise) for resolvida com sucesso, envia o resultado como uma resposta JSON
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                // Se ocorrer um erro, loga o erro no console
+                console.log(erro);
+                // Loga uma mensagem de erro mais detalhada no console
+                console.log(
+                    "\nErroranking quiz! Erro:",
+                    erro.sqlMessage
+                );
+                // Envia uma resposta de erro 500 (Erro Interno do Servidor) com a mensagem de erro SQL
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
 }
 
 

@@ -88,15 +88,29 @@ FROM quiz
 }
 
 function rankingquiz(idUsuario) {
+    // Exibe uma mensagem no console indicando que a função foi acessada,
+    // juntamente com um aviso sobre possíveis erros de conexão com o banco de dados.
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function quizatual():", idUsuario);
     
+    // Define a instrução SQL que será executada para obter o ranking dos usuários.
     var instrucaoSql = `
-  SELECT nome, respostascertas FROM (SELECT nome, respostascertas FROM quiz JOIN usuario ON idusuario = fk_usuario ORDER BY respostascertas DESC LIMIT 5) as 5melhores ORDER BY respostascertas ASC;
+        SELECT nome, respostascertas FROM (
+            SELECT nome, respostascertas 
+            FROM quiz 
+            JOIN usuario ON idusuario = fk_usuario 
+            ORDER BY respostascertas DESC 
+            LIMIT 10
+        ) as 10melhores 
+        ORDER BY respostascertas ASC;
     `;
+    
+    // Exibe a instrução SQL no console para verificação.
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    
+    // Executa a instrução SQL usando a função `executar` do objeto `database`
+    // e retorna o resultado da execução.
     return database.executar(instrucaoSql);
 }
-
 
 
 module.exports = {

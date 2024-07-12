@@ -27,9 +27,9 @@ router.post("/procurarQuiz", function (req, res) {
 router.post("/quizatual", function (req, res) {
     usuarioController.quizatual(req, res);
 });
-
 router.get("/rankingquiz", function (req, res) {
+    // Chama a função 'rankingquiz' do controlador 'usuarioController',
+    // passando os objetos 'req' (requisição) e 'res' (resposta).
     usuarioController.rankingquiz(req, res);
 });
-
 module.exports = router;

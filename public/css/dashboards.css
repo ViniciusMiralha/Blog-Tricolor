@@ -157,59 +157,100 @@ body {
   background-color: aliceblue;
 }
 .inicialquiz1{
-  width: 15%;
-  height: 60px;
+  width: 25%;
+  height: 400px;
   display: flex;
-  align-self: center;
+  /* align-self: center; */
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   color: white;
   font-size: x-large;
-  margin-top: 5%;
+  margin-top: 10%;
   background-color: #ff0000;
- 
+  border-radius: 10px;
 }
+
 .inicialquiz1 a{
-color: white;
+  margin: 5%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 }
-.inicalforum{
-  width: 15%;
-  height: 60px;
+
+
+.inicialquiz1 p{
   display: flex;
-  align-self: center;
-  justify-content: center;
+  margin: 5%;
+font-size:x-large;
   align-items: center;
+  justify-content: center;
+}
+
+.inicalforum{
+  width: 25%;
+  height: 400px;
+  display: flex;
+  /* align-self: center; */
+  justify-content: center;
+  /* align-items: center; */
   color: white;
   font-size: x-large;
-  margin-top: 5%;
+  margin-top: 10%;
   background-color: #ff0000;
-  
+  border-radius: 10px;
 }
 
 .inicalforum a{
+  margin: 5%;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+
+.inicalforum p{
+  display: flex;
+  margin: 5%;
+font-size: x-large;
+  align-items: center;
+  justify-content: center;
 }
 
 .inicialranking{
-  width: 15%;
-  height: 60px;
+  width: 25%;
+  height: 400px;
   display: flex;
-  align-self: center;
+  /* align-self: center; */
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   color: white;
   font-size: x-large;
-  margin-top: 5%;
+  margin-top: 10%;
   background-color: #ff0000;
+  border-radius: 10px;
   
 }
 
 .inicialranking a{
+  margin: 5%;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 }
+
+.inicialranking p{
+  display: flex;
+  margin: 5%;
+font-size: x-large;
+  align-items: center;
+  justify-content: center;
+}
+
 
 
 .area-parametros-alerta {

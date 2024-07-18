@@ -101,7 +101,7 @@
 rankQuiz();
 
 function rankQuiz() {
-    // Faz uma requisição para obter os dados de ranking dos usuários do quiz
+    // Faz uma requisição para obter os dados de ranking dos usuários do quiz 10/07
     fetch(`/usuarios/rankingquiz`, { cache: 'no-store' })
         .then(function (response) {
             // Verifica se a resposta da requisição foi bem-sucedida
@@ -124,7 +124,7 @@ function rankQuiz() {
         });
 }
 
-// Função que exibe os resultados do ranking no HTML
+// Função que exibe os resultados do ranking no HTML 10/07
 function rankearQuiz(resposta) {
     // Percorre todos os resultados do ranking
     for (index = 0; index < resposta.length; index++) {

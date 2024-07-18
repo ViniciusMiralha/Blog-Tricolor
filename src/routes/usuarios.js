@@ -28,8 +28,8 @@ router.post("/quizatual", function (req, res) {
     usuarioController.quizatual(req, res);
 });
 router.get("/rankingquiz", function (req, res) {
-    // Chama a função 'rankingquiz' do controlador 'usuarioController',
-    // passando os objetos 'req' (requisição) e 'res' (resposta).
+    // Chama a função 'rankingquiz' do controlador 'usuarioController', 10/07
+    // passando os objetos requisição e resposta
     usuarioController.rankingquiz(req, res);
 });
 module.exports = router;

@@ -24,4 +24,9 @@ router.get("/listar", function (req, res) {
   idoloController.listar(req, res);
 });
 
+// Definindo a rota para contar usuários por ídolo 25/07
+router.get("/contarUsuarios", function (req, res) {
+  idoloController.contarUsuariosPorIdolo(req, res);
+});
+
 module.exports = router;

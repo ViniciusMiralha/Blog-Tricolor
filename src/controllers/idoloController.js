@@ -53,10 +53,24 @@ function cadastrar(req, res) {
   });
 }
 
+
+function contarUsuariosPorIdolo(req, res) {
+  idoloModel.contarUsuariosPorIdolo()
+      .then(result => {
+          res.status(200).json(result);
+      })
+      .catch(err => {
+          console.error(err);
+          res.status(500).json({ error: "Erro ao buscar dados dos ídolos." });
+      });
+}
+
+
 // Exporta todas as funções para serem utilizadas como métodos do módulo - 02/07
 module.exports = {
   buscarPorNome,
   listar,
   buscarPorId,
   cadastrar,
+  contarUsuariosPorIdolo,
 };

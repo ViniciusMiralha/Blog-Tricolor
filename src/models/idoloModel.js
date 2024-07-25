@@ -29,10 +29,23 @@ function buscarPorId(idIdolo) {
   return database.executar(instrucaoSql);
 }
 
+
+function contarUsuariosPorIdolo() {
+    var instrucaoSql = `
+        SELECT i.idIdolo, i.nome, COUNT(u.idUsuario) AS quantidade
+        FROM idolo i
+        LEFT JOIN usuario u ON i.idIdolo = u.fk_idolo
+        GROUP BY i.idIdolo;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 // Exporta todas as funções para serem utilizadas como métodos deste módulo - 02/07
 module.exports = {
   listar,
   cadastrar,
   buscarPorNome,
-  buscarPorId
+  buscarPorId,
+  contarUsuariosPorIdolo
 };

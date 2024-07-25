@@ -674,3 +674,24 @@ justify-content: center;
   margin: 5%;
   border: groove 5px red;
 }
+
+.dash2 {
+  display: flex;
+  width: 80%;
+  position: relative;
+  top: 0;
+  left: 20%;
+  background-color: #4b0000;
+  height: 100vh;
+  overflow: auto;
+}
+
+.graficoidolos{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  width: 500px;
+  margin-left: 26%;
+  margin-top: 10%;
+}

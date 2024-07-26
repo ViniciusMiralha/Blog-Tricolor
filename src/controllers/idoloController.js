@@ -53,16 +53,18 @@ function cadastrar(req, res) {
   });
 }
 
-
+// Função para contar quantos usuários escolheram cada ídolo - 25/07
 function contarUsuariosPorIdolo(req, res) {
-  idoloModel.contarUsuariosPorIdolo()
-      .then(result => {
-          res.status(200).json(result);
-      })
-      .catch(err => {
-          console.error(err);
-          res.status(500).json({ error: "Erro ao buscar dados dos ídolos." });
-      });
+    // Chama o modelo para contar os usuários por ídolo
+    idoloModel.contarUsuariosPorIdolo()
+        .then(result => {
+           
+            res.status(200).json(result);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({ error: "Erro ao buscar dados dos ídolos." });
+        });
 }
 
 

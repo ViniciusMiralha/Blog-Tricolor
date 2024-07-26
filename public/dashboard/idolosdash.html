@@ -32,8 +32,10 @@
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-nav">
+            <div class="btn-nav-white">
+                <a href="inicial.html">
                 <h3>Inicial</h3>
+            </a>
             </div>
 
             <div class="btn-nav-white">
@@ -53,59 +55,73 @@
                 </a>
             </div>
 
+            <div class="btn-nav">
+                <h3>Idolos</h3>
+            </div>
+
+
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
 
         </div>
-        <!-- Criação da página inicial para que o usuário, ao cadastrar no site, seja redirecionado à página inicial e não para o quiz como funcionava antigamente. -->
-        <div class="dash2">
+      <!-- Criação da página inicial para que o usuário, ao cadastrar no site, seja redirecionado à página inicial e não para o quiz como funcionava antigamente. -->
+<div class="dash2">
 
-            <div class="graficoidolos">
-            <canvas id="graficoPizza" width="400" height="400"></canvas>
-        </div>
-        </div>
+    <!-- Contêiner para o gráfico de ídolos  25/07 -->
+    <div class="graficoidolos">
+        <!-- Elemento canvas onde o gráfico de pizza será renderizado -->
+        <canvas id="graficoPizza" width="400" height="400"></canvas>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            fetch('/idolos/contarUsuarios')
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);  // Verifica a estrutura dos dados
-                    const ctx = document.getElementById('graficoPizza').getContext('2d');
-                    const nomesIdolos = data.map(item => item.nome);
-                    const quantidades = data.map(item => item.quantidade);
-                    
-                    new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: nomesIdolos,
-                            datasets: [{
-                                data: quantidades,
-                                backgroundColor: ['#FF6384', '#090429', '#36A2EB', '#FFCE56', '#E7E9ED']
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'top',
-                                },
-                                tooltip: {
-                                    callbacks: {
-                                        label: function (tooltipItem) {
-                                            return tooltipItem.label + ': ' + tooltipItem.raw + ' usuários';
-                                        }
+</div>
+
+<!-- Script que carrega e renderiza o gráfico de pizza quando a página é carregada -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Faz uma requisição para a rota /idolos/contarUsuarios para obter os dados dos ídolos
+        fetch('/idolos/contarUsuarios')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                
+                // Obtém o contexto do canvas onde o gráfico será desenhado
+                const ctx = document.getElementById('graficoPizza').getContext('2d');
+                
+                // Extrai os nomes dos ídolos e as quantidades de usuários que escolheram cada ídolo
+                const nomesIdolos = data.map(item => item.nome);
+                const quantidades = data.map(item => item.quantidade);
+                
+                // Cria um novo gráfico de pizza usando Chart.js
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: nomesIdolos, // Define os rótulos do gráfico como os nomes dos ídolos
+                        datasets: [{
+                            data: quantidades, // Define os dados do gráfico como as quantidades de usuários
+                            backgroundColor: ['#FF6384', '#090429', '#36A2EB', '#FFCE56', '#E7E9ED'] // Cores para cada fatia do gráfico
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top', // Posição da legenda no gráfico
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (tooltipItem) {
+                                        return tooltipItem.label + ': ' + tooltipItem.raw + ' usuários';
                                     }
                                 }
                             }
                         }
-                    });
-                })
-                .catch(error => {
-                    console.error('Erro ao carregar os dados do gráfico:', error);
+                    }
                 });
-        });
-    </script>
+            })
+            .catch(error => {
+                console.error('Erro ao carregar os dados do gráfico:', error);
+            });
+    });
+</script>
 </body>
 </html>

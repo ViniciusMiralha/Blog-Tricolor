@@ -29,8 +29,9 @@ function buscarPorId(idIdolo) {
   return database.executar(instrucaoSql);
 }
 
-
+// Função para contar quantos usuários escolheram cada ídolo - 25/07
 function contarUsuariosPorIdolo() {
+   // Define a instrução SQL para contar o número de usuários associados a cada ídolo
     var instrucaoSql = `
         SELECT i.idIdolo, i.nome, COUNT(u.idUsuario) AS quantidade
         FROM idolo i

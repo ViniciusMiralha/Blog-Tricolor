@@ -79,6 +79,14 @@
 
 <!-- Script que carrega e renderiza o gráfico de pizza quando a página é carregada -->
 <script>
+
+const b_usuario = document.getElementById('b_usuario');
+  if (sessionStorage.NOME_USUARIO) {
+      b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  } else {
+      b_usuario.innerHTML = 'usuário';
+  }
+  
     document.addEventListener('DOMContentLoaded', function () {
         // Faz uma requisição para a rota /idolos/contarUsuarios para obter os dados dos ídolos
         fetch('/idolos/contarUsuarios')

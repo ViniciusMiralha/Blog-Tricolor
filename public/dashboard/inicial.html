@@ -101,5 +101,14 @@
     </div>
 </div>
 </body>
+<script>
+    const b_usuario = document.getElementById('b_usuario');
+  if (sessionStorage.NOME_USUARIO) {
+      b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  } else {
+      b_usuario.innerHTML = 'usuário';
+  }
+
+</script>
 
 </html>

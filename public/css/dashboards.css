@@ -73,7 +73,7 @@ body {
   font-size: 14px;
   padding: 5px 8px;
   color: white;
-  background-color: #e6005a;
+  background-color: #e60000;
   width: 80px;
 }
 
@@ -84,7 +84,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  border-bottom: 3px solid #e6005a;
+  border-bottom: 3px solid red;
   padding: 20px;
 }
 
@@ -97,7 +97,7 @@ body {
 }
 
 .div-results .feed-container {
-  background-color: #212124;
+  background-color: #000000;
   border-radius: 5px;
   margin-bottom: 80px;
 }

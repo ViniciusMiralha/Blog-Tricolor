@@ -1,12 +1,5 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
 
-/*
-comandos para mysql server
-*/
-
-DROP DATABASE projetoindividual;
+ -- DROP DATABASE projetoindividual;
 CREATE DATABASE projetoindividual;
 USE projetoindividual;
 
@@ -47,3 +40,26 @@ CREATE TABLE aviso (
 SELECT * FROM idolo;
 SELECT * FROM usuario;
 SELECT * FROM quiz;
+
+CREATE VIEW vw_dados_completos AS
+SELECT 
+    u.idUsuario,
+    u.nome AS "Nome Do Usuario",
+    u.email AS "Email",
+    i.nome AS "Idolo",
+    q.respostascertas AS "Respostas Certas",
+    q.respostaserradas AS "Respostas Erradas",
+    a.titulo AS "Titulo",
+    a.descricao AS "Descrição"
+FROM 
+    usuario u
+LEFT JOIN 
+    idolo i ON u.fk_idolo = i.idIdolo
+LEFT JOIN 
+    quiz q ON u.idUsuario = q.fk_usuario
+LEFT JOIN 
+    aviso a ON u.idUsuario = a.fk_usuario;
+
+SELECT * FROM vw_dados_completos;
+
+
